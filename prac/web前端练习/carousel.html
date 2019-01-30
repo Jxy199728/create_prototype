@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>轮播图</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+        *{margin:0; padding: 0;}
+        .play{width:1226px; height:460px; /*background: coral*/; margin: 0 auto; position: relative;
+            overflow: hidden;}
+
+        .play .list ul{width: 200px; height: 30px; /*background: aqua;*/ position: absolute; bottom: 20px; right: 0;}
+        .play .list ul li{float: left; width: 20px; height: 20px; border: 2px solid #fff; border-radius: 10px;
+            list-style: none; line-height: 20px; text-align: center; margin-left: 5px;}
+
+        .left{position: absolute; top: 45%; left: 0;}
+        .left:hover{background: rgba(0,0,0,0.5);}
+        .right{position: absolute; top: 45%; right: 0;}
+        .right:hover{background: rgba(0,0,0,0.5);}
+
+        .active{background: #fff;}
+
+    </style>
+</head>
+<body>
+<div class="play">
+    <!--图片-->
+    <div class="pic">
+        <img src="images/bts3.jpg" width="100%" ><!--width="1226px" height="460px"-->
+        <img src="images/bts6.jpeg" width="100%">
+        <img src="images/bts7.png" width="100%">
+        <img src="images/bts8.png" width="100%">
+        <img src="images/bts9.jpg" width="100%">
+    </div>
+
+    <!--列表小圆点-->
+    <div class="list">
+        <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <!--箭头-->
+    <div class="arrows">
+        <img src="images/left.png" class="left" height="40px" width="40px">
+        <img src="images/right.png" class="right" height="40px" width="40px">
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var times = 0;
+    timeplay=null;
+
+    // alert(22)
+    $(".play .list ul li").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+        index=$(this).index(); //获取序号
+        // alert(index); //显示提示
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".play .pic img").eq(index).show().siblings().hide();
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 左箭头
+    $(".play .arrows .left").click(function(){
+        // alert("eeeee")
+        times--;
+        if(times >= 0){
+            $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times).show().siblings().hide();
+        }else{
+            times = 5;
+            $(".play .list ul li").eq(times=4).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times=4).show().siblings().hide();
+        }
+    });
+    $(".play .arrow .left").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 右箭头
+    $(".play .arrows .right").click(function(){
+        // alert("eeeee")
+        times++;
+        if(times <= 4){
+            $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times).show().siblings().hide();
+        }else{
+            times = -1;
+            $(".play .list ul li").eq(times=0).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times=0).show().siblings().hide();
+        }
+    });
+    $(".play .arrow .left").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 自定义function
+    aa();
+    function aa(){
+        // alert("防弹");
+        // 设置时钟
+        // var times = 0;
+        timeplay = setInterval(function(){
+            times++;
+            // alert(times);
+            if(times < 5){
+                $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+                $(".play .pic img").eq(times).show().siblings().hide();
+            }else{
+                times = -1;
+            }
+
+        }, 1000);
+    }
+
+</script>
+</body>
+</html>
