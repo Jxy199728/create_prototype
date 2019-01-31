@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>小米商城</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+
+    <style type="text/css"> /*CSS样式*/
+        *{margin: 0; padding: 0;}
+        .top{width: 100%; height: 40px; background: #333; font-size: 10px; font-family: 微软雅黑;}
+        .top .con{width: 1226px; height: 40px; /*background: red; */margin:0 auto;}
+        /*列表*/
+        .top .con .nav{height: 40px; line-height: 40px; float: left;}
+        .top .con .nav a{color: #b0b0b0; text-decoration: none;}
+        .top .con .nav a:hover{color: #fff;}
+        .top .con .nav .shu{margin: 0 0.5em; color: #424242;} /*1em=一个字体大小 这里左右间距半个字*/
+
+        /*购物车*/
+        .top .con .nav-cart{width: 120px; height: 40px; line-height: 40px; text-align: center; float: right; background: #424242; margin-left: 15px}
+        .top .con .nav-cart a{color: #fff; text-decoration: none;}
+
+        /*登录*/
+        .top .con .nav-login{height: 40px; line-height: 40px; float: right}
+        .top .con .nav-login a{color: #b0b0b0; text-decoration: none;}
+        .top .con .nav-login a:hover{color: #fff;}
+        .top .con .nav-login .shu{margin: 0 0.5em; color: #424242;} /*1em=一个字体大小 这里左右间距半个字*/
+
+        /*大导航*/
+        .top2{width: 100%; height: 100px; /*background: #000;*/}
+        .top2 .con{width: 1226px; height:100px; /*background: coral;*/ margin:0 auto;}
+        .top2 .con .logo-2{float: left; width: 320px; height: 100px; /*background: aqua;*/}
+        .top2 .con .logo-2 a{line-height: 80px;}
+        .top2 .con .logo-2 a img{vertical-align: middle;}
+
+        /*列表*/
+        .top2 .con .navs{width: 500px; height: 100px; float:left; /*background: yellowgreen;*/}
+        .top2 .con .navs ul li{float: left; width: 150px; height: 100px; list-style: none; line-height: 100px;
+            text-align: center;}
+        .top2 .con .navs ul li a{color: #000; text-decoration: none; display: block; width: 150px; height:100px;}
+        .top2 .con .navs ul li a:hover{color: red;}
+
+        /*搜索框*/
+        .top2 .con .search{float: right; width: 296px; height: 100px; line-height: 100px;}
+        .top2 .con .search .text{height: 48px; width: 223px; border: 1px solid red;}
+        .top2 .con .search .btn{height: 52px; width: 50px; background: url("images/send.png"); border: 1px solid red;
+                                transition: background 1s ease-in 1s;}
+        .top2 .con .search .btn:hover{background: url("images/send2.png");}
+
+        .play{width:1226px; height:460px; /*background: coral*/; margin: 0 auto; position: relative;
+            overflow: hidden;}
+
+        .play .list ul{width: 200px; height: 30px; /*background: aqua;*/ position: absolute; bottom: 20px; right: 0;}
+        .play .list ul li{float: left; width: 20px; height: 20px; border: 2px solid #fff; border-radius: 10px;
+            list-style: none; line-height: 20px; text-align: center; margin-left: 5px;}
+
+        .left{position: absolute; top: 45%; left: 0;}
+        .left:hover{background: rgba(0,0,0,0.5);}
+        .right{position: absolute; top: 45%; right: 0;}
+        .right:hover{background: rgba(0,0,0,0.5);}
+
+        .active{background: #fff;}
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="con">
+        <!--列表-->
+        <div class="nav">
+            <a href="#">小米商城</a><span class="shu">|</span>
+            <a href="#">MIUI</a><span class="shu">|</span>
+            <a href="#">米聊</a><span class="shu">|</span>
+        </div>
+
+        <!--购物车-->
+        <div class="nav-cart">
+            <a href="#"><span class="glyphicon glyphicon-list"></span>&nbsp购物车</a>
+        </div>
+
+        <!--登录-->
+        <div class="nav-login">
+            <a href="#">登录</a><span class="shu">|</span>
+            <a href="#">注册</a><span class="shu">|</span>
+            <a href="#">消息通知</a><span class="shu">|</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="top2">
+    <div class="con">
+        <!--logo-2-->
+        <div class="logo-2">
+            <a href="#"><img src="images/tata1.jpg" width="100px" ></a>
+            <a href="#"><img src="images/bts10.gif" height="100px"></a>
+        </div>
+
+        <!--列表-->
+        <div class="navs">
+            <ul>
+                <li><a href="#">小米手机</a></li>
+                <li><a href="#">红米</a></li>
+                <li><a href="#">平板</a></li>
+            </ul>
+        </div>
+
+        <!--搜索框-->
+        <div class="search">
+            <input type="text" class="text" placeholder="bts" ><input type="submit" class="btn" value="
+            "> <!--submit发送-->
+        </div>
+    </div>
+</div>
+
+<div class="play">
+    <!--图片-->
+    <div class="pic">
+        <img src="images/bts3.jpg" width="100%" ><!--width="1226px" height="460px"-->
+        <img src="images/bts6.jpeg" width="100%">
+        <img src="images/bts7.png" width="100%">
+        <img src="images/bts8.png" width="100%">
+        <img src="images/bts9.jpg" width="100%">
+    </div>
+
+    <!--列表小圆点-->
+    <div class="list">
+        <ul>
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <!--箭头-->
+    <div class="arrows">
+        <img src="images/left.png" class="left" height="40px" width="40px">
+        <img src="images/right.png" class="right" height="40px" width="40px">
+    </div>
+
+</div>
+<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var times = 0;
+    timeplay=null;
+
+    // alert(22)
+    $(".play .list ul li").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+        index=$(this).index(); //获取序号
+        // alert(index); //显示提示
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".play .pic img").eq(index).show().siblings().hide();
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 左箭头
+    $(".play .arrows .left").click(function(){
+        // alert("eeeee")
+        times--;
+        if(times >= 0){
+            $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times).show().siblings().hide();
+        }else{
+            times = 5;
+            $(".play .list ul li").eq(times=4).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times=4).show().siblings().hide();
+        }
+    });
+    $(".play .arrow .left").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 右箭头
+    $(".play .arrows .right").click(function(){
+        // alert("eeeee")
+        times++;
+        if(times <= 4){
+            $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times).show().siblings().hide();
+        }else{
+            times = -1;
+            $(".play .list ul li").eq(times=0).addClass("active").siblings().removeClass("active");
+            $(".play .pic img").eq(times=0).show().siblings().hide();
+        }
+    });
+    $(".play .arrow .left").mouseover(function(){
+        clearInterval(timeplay); //清除时钟
+    }).mouseout(function(){
+        aa();
+    });
+
+    // 自定义function
+    aa();
+    function aa(){
+        // alert("防弹");
+        // 设置时钟
+        // var times = 0;
+        timeplay = setInterval(function(){
+            times++;
+            // alert(times);
+            if(times < 5){
+                $(".play .list ul li").eq(times).addClass("active").siblings().removeClass("active");
+                $(".play .pic img").eq(times).show().siblings().hide();
+            }else{
+                times = -1;
+            }
+
+        }, 1000);
+    }
+
+</script>
+
+</body>
+</html>

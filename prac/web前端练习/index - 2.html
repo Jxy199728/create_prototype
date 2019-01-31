@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>小米商城</title>
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+
+    <style type="text/css"> /*CSS样式*/
+        *{margin: 0; padding: 0;}
+        .top{width: 100%; height: 40px; background: #333; font-size: 10px; font-family: 微软雅黑;}
+        .top .con{width: 1226px; height: 40px; /*background: red; */margin:0 auto;}
+        /*列表*/
+        .top .con .nav{height: 40px; line-height: 40px; float: left;}
+        .top .con .nav a{color: #b0b0b0; text-decoration: none;}
+        .top .con .nav a:hover{color: #fff;}
+        .top .con .nav .shu{margin: 0 0.5em; color: #424242;} /*1em=一个字体大小 这里左右间距半个字*/
+
+        /*购物车*/
+        .top .con .nav-cart{width: 120px; height: 40px; line-height: 40px; text-align: center; float: right; background: #424242; margin-left: 15px}
+        .top .con .nav-cart a{color: #fff; text-decoration: none;}
+
+        /*登录*/
+        .top .con .nav-login{height: 40px; line-height: 40px; float: right}
+        .top .con .nav-login a{color: #b0b0b0; text-decoration: none;}
+        .top .con .nav-login a:hover{color: #fff;}
+        .top .con .nav-login .shu{margin: 0 0.5em; color: #424242;} /*1em=一个字体大小 这里左右间距半个字*/
+
+        /*大导航*/
+        .top2{width: 100%; height: 100px; /*background: #000;*/}
+        .top2 .con{width: 1226px; height:100px; /*background: coral;*/ margin:0 auto;}
+        .top2 .con .logo-2{float: left; width: 320px; height: 100px; /*background: aqua;*/}
+        .top2 .con .logo-2 a{line-height: 80px;}
+        .top2 .con .logo-2 a img{vertical-align: middle;}
+
+        /*列表*/
+        .top2 .con .navs{width: 500px; height: 100px; float:left; /*background: yellowgreen;*/}
+        .top2 .con .navs ul li{float: left; width: 150px; height: 100px; list-style: none; line-height: 100px;
+            text-align: center;}
+        .top2 .con .navs ul li a{color: #000; text-decoration: none; display: block; width: 150px; height:100px;}
+        .top2 .con .navs ul li a:hover{color: red;}
+
+        /*搜索框*/
+        .top2 .con .search{float: right; width: 296px; height: 100px; line-height: 100px;}
+        .top2 .con .search .text{height: 48px; width: 223px; border: 1px solid red;}
+        .top2 .con .search .btn{height: 52px; width: 50px; background: url("images/send.png"); border: 1px solid red;
+                                transition: background 1s ease-in 1s;}
+        .top2 .con .search .btn:hover{background: url("images/send2.png");}
+
+    </style>
+</head>
+<body>
+<div class="top">
+    <div class="con">
+        <!--列表-->
+        <div class="nav">
+            <a href="#">小米商城</a><span class="shu">|</span>
+            <a href="#">MIUI</a><span class="shu">|</span>
+            <a href="#">米聊</a><span class="shu">|</span>
+        </div>
+
+        <!--购物车-->
+        <div class="nav-cart">
+            <a href="#"><span class="glyphicon glyphicon-list"></span>&nbsp购物车</a>
+        </div>
+
+        <!--登录-->
+        <div class="nav-login">
+            <a href="#">登录</a><span class="shu">|</span>
+            <a href="#">注册</a><span class="shu">|</span>
+            <a href="#">消息通知</a><span class="shu">|</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="top2">
+    <div class="con">
+        <!--logo-2-->
+        <div class="logo-2">
+            <a href="#"><img src="images/tata1.jpg" width="100px" ></a>
+            <a href="#"><img src="images/bts10.gif" height="100px"></a>
+        </div>
+
+        <!--列表-->
+        <div class="navs">
+            <ul>
+                <li><a href="#">小米手机</a></li>
+                <li><a href="#">红米</a></li>
+                <li><a href="#">平板</a></li>
+            </ul>
+        </div>
+
+        <!--搜索框-->
+        <div class="search">
+            <input type="text" class="text" placeholder="bts" ><input type="submit" class="btn" value="
+            "> <!--submit发送-->
+        </div>
+    </div>
+</div>
+</body>
+</html>
