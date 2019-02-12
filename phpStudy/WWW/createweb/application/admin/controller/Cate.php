@@ -50,8 +50,23 @@ class Cate extends Controller
         //dump($childIds);die();
         //删除栏目后删除栏目下文章S
         //$_childIds=implode(',',$childIds);//所有要删除的文章 用‘,’组合成一个字符串 1,2,3
-        //db('article')->where('cate_id','in',$childIds)->delete();//批量删除
+        db('media')->where('cate_id','in',$childIds)->delete();//批量删除
         //删除栏目后删除栏目下文章E
+
+
+        //删除分类前判断该分类下的文章和文章相关数据
+        $media=db('media');
+        foreach ($childIds as $k => $v) {
+            $medRes=$media->field('id,med_pic')->where(array('cate_id'=>$v))->select();//根据cate_id查找 所有内容数据
+            foreach ($medRes as $k1 => $v1) {//循环执行
+                $picSrc=IMG_UPLOADS.$v1['med_pic'];//拼装图片地址
+                if (file_exists($picSrc)) {//判断
+                    @unlink($picSrc);//删除图片
+                }
+                $media->delete($v1['id']);//删除文章数据
+            }
+        }
+
         $del=db('cate')->delete($childIds);
         if ($del !== false) {
             $this->success('删除栏目成功!',url('lst'));
