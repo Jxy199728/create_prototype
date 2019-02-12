@@ -143,6 +143,10 @@ return [
     // 视图输出字符串内容替换
     'view_replace_str'       => [
         '__home__'=>'/createweb/public/static/home',
+        '__admin__'=>'/createweb/public/static/admin',
+        '__uploads__'=>'/createweb/public/static/uploads',
+        '__ueditor__'=>'/createweb/public/static/ueditor',
+
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
