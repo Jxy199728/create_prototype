@@ -9,13 +9,22 @@
                         <div class="am-dropdown" data-am-dropdown>
                             <button class="am-btn am-btn-primary am-dropdown-toggle" data-am-dropdown-toggle>&nbspCREATE&nbsp<span class="am-icon-caret-down"></span></button>
                             <ul class="am-dropdown-content">
-                                <li><a href="#">首页</a></li>
+                                {volist name="cateRes" id="vo"}
+                                <li>
+                                    <a href="#"><?php echo str_repeat('-',$vo['level']*4);?>{$vo.cate_name}</a>
+                                    <ul>
+                                        <li>
+                                            <a>1234</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="am-divider"></li>
-                                <li><a href="#">产品介绍</a></li>
+                                {/volist}
+                                <!--<li><a href="#">产品介绍</a></li>
                                 <li class="am-divider"></li>
                                 <li><a href="#">帮助中心</a></li>
                                 <li class="am-divider"></li>
-                                <li><a href="#">媒体中心</a></li>
+                                <li><a href="#">媒体中心</a></li>-->
                             </ul>
                         </div>
                     </div>
