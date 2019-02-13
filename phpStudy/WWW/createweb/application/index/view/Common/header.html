@@ -1,3 +1,5 @@
+
+
 <div class="layout-header am-hide-sm-only">
     <!--topbar start-->
     <div class="topbar">
@@ -11,12 +13,17 @@
                             <ul class="am-dropdown-content">
                                 {volist name="cateRes" id="vo"}
                                 <li>
-                                    <a href="#"><?php echo str_repeat('-',$vo['level']*4);?>{$vo.cate_name}</a>
+                                    {if condition="$vo['pid'] eq 0"}
+                                    <a href="#">{$vo.cate_name}</a>
+                                    {else/}
+                                    <!--submenu start-->
+
                                     <ul>
                                         <li>
-                                            <a>1234</a>
+                                            <a href="#">{$vo.cate_name}</a>
                                         </li>
                                     </ul>
+                                    {/if}
                                 </li>
                                 <li class="am-divider"></li>
                                 {/volist}
@@ -101,28 +108,48 @@
         <div class="nav-contain">
             <div class="nav-inner">
                 <ul class="am-nav am-nav-pills am-nav-justify">
-                    <li class=""><a href="./index.html">首页</a></li>
-                    <li>
+                    {volist name="cateRes" id="vo"}
+                    {if condition="$vo['pid'] eq 0"}
+                    <li class="">
+                        <a href="./index.html">{$vo.cate_name}</a>
+
+                        {if condition="in_array($vo['id'],$catepid)"}
+
+                        <ul class="sub-menu">
+                            {volist name="ccRR" id="vol"}
+                            <!--<li class="menu-item"><a href="html/product1.html">网站动态</a></li>
+                            <li class="menu-item"><a href="html/product1.html">2</a></li>
+                            <li class="menu-item"><a href="html/product1.html">3</a></li>-->
+                            <li class="menu-item"><a href="html/product1.html">{$vol.cate_name}</a></li>
+                            {/volist}
+                        </ul>
+                        {/if}
+
+
+                    </li>
+                    {/if}
+                    {/volist}
+                    <!--<li>
                         <a href="html/about.html">产品介绍</a>
-                        <!-- sub-menu start-->
+                        &lt;!&ndash; sub-menu start&ndash;&gt;
                         <ul class="sub-menu">
                             <li class="menu-item"><a href="html/product1.html">产品展示1</a></li>
                             <li class="menu-item"><a href="html/product2.html">产品展示2</a></li>
                             <li class="menu-item"><a href="html/product3.html">产品展示3</a></li>
                         </ul>
-                        <!-- sub-menu end-->
+                        &lt;!&ndash; sub-menu end&ndash;&gt;
                     </li>
                     <li><a href="#">帮助中心</a></li>
                     <li>
                         <a href="html/news.html">媒体中心</a>
-                        <!-- sub-menu start-->
+                        &lt;!&ndash; sub-menu start&ndash;&gt;
                         <ul class="sub-menu">
                             <li class="menu-item"><a href="html/news-content.html">公司动态</a></li>
                             <li class="menu-item"><a href="html/404-dark.html">行业动态</a></li>
                             <li class="menu-item"><a href="html/404-light.html">精彩专题</a></li>
                         </ul>
-                        <!-- sub-menu end-->
-                    </li>
+                        &lt;!&ndash; sub-menu end&ndash;&gt;
+                    </li>-->
 
                 </ul>
             </div>

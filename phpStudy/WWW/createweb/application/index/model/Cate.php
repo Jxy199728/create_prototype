@@ -11,6 +11,11 @@ class Cate extends Model
         return $this->sortCate($data);
     }
 
+    public function cateTreeId(){
+        $data=$this->order('id desc')->select();
+        return $this->field('id')->sortCate($data);
+    }
+
     public function sortCate($data,$pid=0,$level=0){
         static $arr=[];
         foreach ($data as $k => $v) { //找顶级栏目  v是他的值
@@ -21,6 +26,25 @@ class Cate extends Model
             }
         }
         return $arr;
+    }
+
+
+    //获取子栏目id
+    public function getChildIds($id){//$id为传递过来的栏目id
+        $data=$this->select();//得到所有栏目的信息
+        return $this->_getChildIds($data,$id);//运行下面私有方法 传参 所有栏目信息 和 传参栏目id
+    }
+
+    private function _getChildIds($data,$id){//接受一下
+        static $arr=array();//创建静态数组
+        foreach ($data as $k => $v) {
+            if ($v['pid']==$id) {//所有栏目的pid 等于当前栏目id 则为子栏目
+                $arr[]=$v['id'];//获取其子栏目id 放到静态数组里面
+                $this->_getChildIds($data,$v['id']);//继续往下找  寻找子栏目的子栏目
+            }
+        }
+        return $arr;
+
     }
 
 }
