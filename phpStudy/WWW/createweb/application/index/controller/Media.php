@@ -13,6 +13,11 @@ class Media extends Common
     }
 
     public function crNewsContent(){
+        $id=input('id');
+        $crnc=db('media')->find($id);
+        $this->assign([
+            'crnc'=>$crnc,
+        ]);
         return view();
     }
 
@@ -25,6 +30,11 @@ class Media extends Common
     }
 
     public function odNewsContent(){
+        $id=input('id');
+        $odnc=db('media')->find($id);
+        $this->assign([
+            'odnc'=>$odnc,
+        ]);
         return view();
     }
 }
