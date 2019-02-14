@@ -46,27 +46,31 @@
         <div class="news-contaier">
           <div class="blog">
             <div class="am-g">
+                {volist name="odnews" id="odn"}
               <div class="am-u-lg-4 am-u-md-6">
                 <div class="article">
                   <div class="article-img">
-                    <img src="__home__/assets/images/news/b01.jpg" alt="" />
-                  </div>
+                      {if condition="$odn['med_pic'] eq null"}
+                      <span style="color: red">暂无图片</span>
+                      {else/}
+                      <img src="__uploads__/{$odn.med_pic}" style="height:35px;"></img>
+                      {/if}                  </div>
                   <div class="article-header">
-                    <h2><a href="#" rel="">云适配：价值驱动是占有市场的关键</a></h2>
+                    <h2><a href="#" rel="">{$odn.title}</a></h2>
                     <ul class="article--meta">
-											<li class="article--meta_item -date">December 28, 2015</li>
+											<li class="article--meta_item -date">{$odn.addtime|date="Y年m月d日-h:i:s",###}</li>
 											<li class="article--meta_item comments">33 Comments</li>
 										</ul>
                   </div>
                   <div class="article--content">
-										<p>作为一家技术创新型企业，技术的先进性和创新型是构建企业核心竞争力的根本。但是要想占领市场并获得持续增长，需要从服务市场的角度出发，为用户输出价值，也是云适配的发展宗旨。</p>
+										<p>{$odn.med_desc}</p>
 									</div>
                   <div class="article--footer">
   									<a href="{:url('odNewsContent')}" class="link">Read More</a>
   								</div>
                 </div>
               </div>
-
+                {/volist}
               <div class="am-u-lg-4 am-u-md-6  am-u-end">
                 <div class="article">
                   <div class="article-img">

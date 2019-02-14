@@ -5,6 +5,10 @@ use think\Controller;
 class Media extends Common
 {
     public function crNews(){
+        $crnews=db('media')->where('cate_id=5')->select();
+        $this->assign([
+            'crnews'=>$crnews,
+        ]);
         return view();
     }
 
@@ -13,6 +17,10 @@ class Media extends Common
     }
 
     public function odNews(){
+        $odnews=db('media')->where('cate_id=6')->select();
+        $this->assign([
+            'odnews'=>$odnews,
+        ]);
         return view();
     }
 

@@ -10,7 +10,6 @@ class Common extends Controller
 	}
     public function nav()
     {
-
         $cateRes=model('cate')->cateTree();
 
         $catepid=db('cate')->field(array('pid'))->select();
