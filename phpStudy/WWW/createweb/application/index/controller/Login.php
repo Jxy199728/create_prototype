@@ -2,9 +2,9 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Index extends Common
+class Login extends Controller
 {
-    public function index()
+    public function login()
     {
         return view();
 

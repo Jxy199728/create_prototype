@@ -14,13 +14,25 @@
                                 {volist name="cateRes" id="vo"}
                                 <li>
                                     {if condition="$vo['pid'] eq 0"}
-                                    <a href="#">{$vo.cate_name}</a>
+                                    <a
+                                            {if condition="$vo['id'] eq 1"}href="{:url('Index/index')}"
+                                            {elseif condition="$vo['id'] eq 2"}href="#"
+                                            {elseif condition="$vo['id'] eq 3"}href="#"
+                                            {elseif condition="$vo['id'] eq 4"}href="#"
+                                            {/if}>
+                                    {$vo.cate_name}
+                                    </a>
                                     {else/}
                                     <!--submenu start-->
 
                                     <ul>
                                         <li>
-                                            <a href="#">{$vo.cate_name}</a>
+                                            <a
+                                                    {if condition="$vo['id'] eq 5"}href="{:url('Media/odNews')}"
+                                                    {elseif condition="$vo['id'] eq 6"}href="{:url('Media/crNews')}"
+                                                    {/if}>
+                                            {$vo.cate_name}
+                                            </a>
                                         </li>
                                     </ul>
                                     {/if}
@@ -47,8 +59,8 @@
                         <i class="am-icon-linkedin"></i>
                         <i class="am-icon-youtube-play"></i>
                         <i class="am-icon-rss"></i>
-                        <a href="html/login.html">登录</a>
-                        <a href="html/register.html">注册</a>
+                        <a href="{:url('Login/login')}">登录</a>
+                        <a href="{:url('Register/register')}">注册</a>
                         <a href="#">探索</a>
                     </div>
                 </div>

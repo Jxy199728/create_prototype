@@ -2,9 +2,9 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Index extends Common
+class Register extends Common
 {
-    public function index()
+    public function register()
     {
         return view();
 
