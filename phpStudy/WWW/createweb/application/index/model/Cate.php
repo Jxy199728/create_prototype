@@ -11,11 +11,6 @@ class Cate extends Model
         return $this->sortCate($data);
     }
 
-    public function cateTreeId(){
-        $data=$this->order('id desc')->select();
-        return $this->field('id')->sortCate($data);
-    }
-
     public function sortCate($data,$pid=0,$level=0){
         static $arr=[];
         foreach ($data as $k => $v) { //找顶级栏目  v是他的值
@@ -27,7 +22,6 @@ class Cate extends Model
         }
         return $arr;
     }
-
 
     //获取子栏目id
     public function getChildIds($id){//$id为传递过来的栏目id
