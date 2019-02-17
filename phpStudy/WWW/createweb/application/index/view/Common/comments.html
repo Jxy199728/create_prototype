@@ -1,0 +1,65 @@
+<div class="comments">
+    <div class="comments">
+        <h2 class="comments--title">Comments (2)</h2>
+        <ul class="comments_list">
+            {volist name="messRes" id="mess"}
+            {if condition="$mess['topicid'] eq $medid['id']"}
+            <li class="comment">
+                <header class="comment--header">
+                    <figure class="comment--userpic"><img src="__home__/assets/images/news/av01.jpg" alt=""></figure>
+                    <strong class="comment--username"><a href="#">{$mess.username}</a></strong>
+                    <time datetime="2001-05-15T19:00" class="comment--date">{$mess.time|date="Y-m-d",###}</time>
+                </header>
+                <div class="comment--content">
+                    <p>
+                        {$mess.content}
+                    </p>
+                    <a href="#" class="comment--reply">回复</a>
+                </div>
+                <ul class="comments_list">
+                    <li class="comment">
+                        <header class="comment--header">
+                            <figure class="comment--userpic"><img src="__home__/assets/images/news/av02.jpg" alt=""></figure>
+                            <strong class="comment--username"><a href="#">Brad Bukovsky</a></strong>
+                            <time datetime="2001-05-15T19:00" class="comment--date">30th of January, 2016</time>
+                        </header>
+                        <div class="comment--content">
+                            <p>
+                                评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评论评
+                            </p>
+                            <a href="#" class="comment--reply">回复</a>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            {/if}
+            {/volist}
+        </ul>
+
+        <!--留个言吧-->
+        <div class="comment_form">
+            <h2 class="comment_form--title">Leave Comment</h2>
+            <form class="am-form am-form-horizontal" action="" method="post">
+                <input type="hidden" name="topicid" value="{$medid.id}">
+                <div class="am-form-group">
+                    <div class="am-g">
+                        <div class="am-u-md-4">
+                            <input type="text"   placeholder="Full Name" name="username">
+                        </div>
+                        <div class="am-u-md-4">
+                            <input type="Email"  placeholder="Email" name="email">
+                        </div>
+
+                    </div>
+                    <div class="am-g">
+                        <textarea cols="30" rows="10" placeholder="Type in here..." name="content"></textarea>
+                    </div>
+                    <div class="comment-form-footer">
+                        <button type="submit" class="am-btn am-btn-secondary">确认提交</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

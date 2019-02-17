@@ -2,20 +2,15 @@
 namespace app\index\controller;
 use think\Controller;
 
-class Index extends Controller
+class Index extends Common
 {
     public function index()
     {
-
-        //$navers=db('cate')->select();
-        //$this->assign([
-        //    'navers'=>$navers,
-        //]);
-        $cateRes=model('cate')->cateTree();
+        $pdRes=db('product')->where('cate_id=7')->select();
         $this->assign([
-            'cateRes'=>$cateRes,
+            'pdRes'=>$pdRes,
         ]);
         return view();
-
     }
+
 }

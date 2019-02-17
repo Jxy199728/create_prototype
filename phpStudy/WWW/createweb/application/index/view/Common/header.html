@@ -14,12 +14,25 @@
                                 {volist name="cateRes" id="vo"}
                                 <li>
                                     {if condition="$vo['pid'] eq 0"}
-                                    <a href="#">{$vo.cate_name}</a>
+                                    <a
+                                            {if condition="$vo['id'] eq 1"}href="{:url('Index/index')}"
+                                            {elseif condition="$vo['id'] eq 2"}href="#"
+                                            {elseif condition="$vo['id'] eq 3"}href="#"
+                                            {elseif condition="$vo['id'] eq 4"}href="#"
+                                            {/if}>
+                                    {$vo.cate_name}
+                                    </a>
                                     {else/}
                                     <!--submenu start-->
+
                                     <ul>
                                         <li>
-                                            <a href="#">{$vo.cate_name}</a>
+                                            <a
+                                                    {if condition="$vo['id'] eq 5"}href="{:url('Media/odNews')}"
+                                                    {elseif condition="$vo['id'] eq 6"}href="{:url('Media/crNews')}"
+                                                    {/if}>
+                                            {$vo.cate_name}
+                                            </a>
                                         </li>
                                     </ul>
                                     {/if}
@@ -46,8 +59,8 @@
                         <i class="am-icon-linkedin"></i>
                         <i class="am-icon-youtube-play"></i>
                         <i class="am-icon-rss"></i>
-                        <a href="html/login.html">登录</a>
-                        <a href="html/register.html">注册</a>
+                        <a href="{:url('Login/login')}">登录</a>
+                        <a href="{:url('Register/register')}">注册</a>
                         <a href="#">探索</a>
                     </div>
                 </div>
@@ -107,19 +120,24 @@
         <div class="nav-contain">
             <div class="nav-inner">
                 <ul class="am-nav am-nav-pills am-nav-justify">
-                    {volist name="cateRes" id="vol"}
-                    {if condition="$vol['pid'] eq 0"}
+                    {volist name="cateRes" id="vo"}
+                    {if condition="$vo['pid'] eq 0"}
                     <li class="">
-                        <a href="./index.html">{$vol.cate_name}</a>
-                        {elseif condition="$vol['pid'] neq 0"}
+                        <a href="./index.html">{$vo.cate_name}</a>
+
+                        {if condition="in_array($vo['id'],$catepid)"}
 
                         <ul class="sub-menu">
-                            {volist name="cateRes" id="voli"}
-                            if{condition="$voli['pid'] eq 1"}
-                            <li class="menu-item"><a href="html/product1.html">{$voli.cate_name}</a></li>
+                            {volist name="ccRR" id="vol"}
+                            <!--<li class="menu-item"><a href="html/product1.html">网站动态</a></li>
+                            <li class="menu-item"><a href="html/product1.html">2</a></li>
+                            <li class="menu-item"><a href="html/product1.html">3</a></li>-->
+                            {if condition="$vo['id']==$vol['pid']"}
+                            <li class="menu-item"><a href="html/product1.html">{$vol.cate_name}</a></li>
                             {/if}
                             {/volist}
                         </ul>
+                        {/if}
 
 
                     </li>
