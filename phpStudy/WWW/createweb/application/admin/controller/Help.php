@@ -2,7 +2,7 @@
 namespace app\admin\controller;
 use think\Controller;
 
-class Media extends Controller
+class Product extends Controller
 {
     public function add()
     {

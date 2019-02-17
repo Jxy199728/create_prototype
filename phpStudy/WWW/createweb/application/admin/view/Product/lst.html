@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CREATE 后台/内容列表</title>
+  <title>CREATE 后台/产品介绍/内容列表</title>
   <meta name="description" content="这是一个 table 页面">
   <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,25 +88,25 @@
               </thead>
               <tbody>
 
-              {volist name="medRes" id="med"}
+              {volist name="pdRes" id="pd"}
               <tr>
-                <td>{$med.id}</td>
-                <td>{$med.title}</td>
-                <td><a href="#">{$med.med_desc}</a></td>
-                <td>{$med.cate_name}</td>
+                <td>{$pd.id}</td>
+                <td>{$pd.title}</td>
+                <td><a href="#">{$pd.pd_desc}</a></td>
+                <td>{$pd.cate_name}</td>
                 <td class="am-hide-sm-only">
-                  {if condition="$med['med_pic'] eq null"}
+                  {if condition="$pd['pd_pic'] eq null"}
                   <span style="color: red">暂无图片</span>
                   {else/}
-                  <img src="__uploads__/{$med.med_pic}" style="height:35px;"></img>
+                  <img src="__uploads__/{$pd.pd_pic}" style="height:35px;"></img>
                   {/if}
                 </td>
-                <td class="am-hide-sm-only">{$med.addtime|date="Y年m月d日-h:i:s",###}</td>
+                <td class="am-hide-sm-only">{$pd.addtime|date="Y年m月d日-h:i:s",###}</td>
                 <td>
                   <div class="am-btn-toolbar">
                     <div class="am-btn-group am-btn-group-xs">
-                      <a href="{:url('edit',array('id'=>$med['id']))}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
-                      <a onClick="return confirm('确定删除?');" href="{:url('del',array('id'=>$med['id']))}" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
+                      <a href="{:url('edit',array('id'=>$pd['id']))}" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span> 编辑</a>
+                      <a onClick="return confirm('确定删除?');" href="{:url('del',array('id'=>$pd['id']))}" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> 删除</a>
                       <button class="am-btn am-btn-default am-btn-xs am-hide-sm-only"><span class="am-icon-copy"></span> 复制</button>
                     </div>
                   </div>
@@ -127,7 +127,7 @@
                   <li><a href="#">5</a></li>
                   <li><a href="#">»</a></li>
                 </ul>-->
-                {$medRes->render();}
+                {$pdRes->render();}
               </div>
             </div>
             <hr />
@@ -140,7 +140,7 @@
 
     <footer class="admin-content-footer">
       <hr>
-      <p class="am-padding-left">© 2019 CREATE, Inc. Licensed under MIT license.</p>
+      <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
     </footer>
 
   </div>
@@ -151,7 +151,7 @@
 
 <footer>
   <hr>
-  <p class="am-padding-left">© 2019 CREATE, Inc. Licensed under MIT license.</p>
+  <p class="am-padding-left">© 2014 AllMobilize, Inc. Licensed under MIT license.</p>
 </footer>
 
 <!--[if lt IE 9]>

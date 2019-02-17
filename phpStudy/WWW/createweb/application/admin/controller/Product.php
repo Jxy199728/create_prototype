@@ -2,7 +2,7 @@
 namespace app\admin\controller;
 use think\Controller;
 
-class Media extends Controller
+class Product extends Controller
 {
     public function add()
     {
@@ -11,17 +11,17 @@ class Media extends Controller
             $data['addtime']=time();
 
             // 处理上传图片
-            if($_FILES['med_pic']['tmp_name']){
-                $data['med_pic']=$this->upload();
+            if($_FILES['pd_pic']['tmp_name']){
+                $data['pd_pic']=$this->upload();
             }
 
             // 执行验证
-            $validate = validate('media');
+            $validate = validate('product');
             if(!$validate->check($data)){
                 $this->error($validate->getError());
             }
 
-            $add=db('media')->insert($data);
+            $add=db('product')->insert($data);
             if($add){
                 $this->success("内容添加成功",url("lst"));
             }else{
@@ -50,23 +50,23 @@ class Media extends Controller
             $data=input('post.');
 
             // 处理上传图片
-            if($_FILES['med_pic']['tmp_name']){
+            if($_FILES['pd_pic']['tmp_name']){
 
-                $oldartpic=db('media')->field('med_pic')->find($id);
-                $oldpicSrc=IMG_UPLOADS.$oldartpic['med_pic'];
+                $oldartpic=db('product')->field('pd_pic')->find($id);
+                $oldpicSrc=IMG_UPLOADS.$oldartpic['pd_pic'];
                 if(file_exists($oldpicSrc)){
                     @unlink($oldpicSrc); // 执行删除
                 }
-                $data['med_pic']=$this->upload();
+                $data['pd_pic']=$this->upload();
             }
 
             // 执行验证
-            $validate = validate('media');
+            $validate = validate('product');
             if(!$validate->check($data)){
                 $this->error($validate->getError());
             }
 
-            $save=db('media')->update($data);
+            $save=db('product')->update($data);
             if(!$save==false){
                 $this->success("内容修改成功",url("lst"));
             }else{
@@ -76,7 +76,7 @@ class Media extends Controller
 
         // 获取旧数据
         $id=input('id');
-        $medid=db('media')->find($id);
+        $pdid=db('product')->find($id);
 
         $catepid=db('cate')->field(array('pid'))->select();
         static $arr=array(); // 创建静态数组
@@ -89,16 +89,16 @@ class Media extends Controller
         $this->assign([
             'cateRes'=>$cateRes,
             'catepid'=>$catepid,
-            'medid'=>$medid,
+            'pdid'=>$pdid,
         ]);
         return view();
 
     }
 
     public function lst(){
-        $medRes=db('media')->alias('m')->field('m.*,b.cate_name')->join('cr_cate b','m.cate_id=b.id')->paginate(5);
+        $pdRes=db('product')->alias('p')->field('p.*,b.cate_name')->join('cr_cate b','p.cate_id=b.id')->paginate(5);
         $this->assign([
-            'medRes'=>$medRes,
+            'pdRes'=>$pdRes,
         ]);
         return view();
     }
@@ -106,7 +106,7 @@ class Media extends Controller
     // 图片上传
     public function upload(){
         // 获取表单上传文件 例如上传了001.jpg
-        $file = request()->file('med_pic');
+        $file = request()->file('pd_pic');
 
         // 移动到框架应用根目录/public/uploads/ 目录下
         if($file){
