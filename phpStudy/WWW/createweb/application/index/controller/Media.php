@@ -4,7 +4,7 @@ use think\Controller;
 
 class Media extends Common
 {
-    public function crNews(){
+    public function crnews(){
         $crnews=db('media')->where('cate_id=5')->select();
         $this->assign([
             'crnews'=>$crnews,
@@ -12,7 +12,7 @@ class Media extends Common
         return view();
     }
 
-    public function crNewsContent(){
+    public function crnewscontent(){
         $id=input('id');
         $crnc=db('media')->find($id);
         $this->assign([
@@ -21,7 +21,7 @@ class Media extends Common
         return view();
     }
 
-    public function odNews(){
+    public function odnews(){
         $odnews=db('media')->where('cate_id=6')->select();
         $this->assign([
             'odnews'=>$odnews,
@@ -29,7 +29,7 @@ class Media extends Common
         return view();
     }
 
-    public function odNewsContent(){
+    public function odnewscontent(){
         $id=input('id');
         $odnc=db('media')->find($id);
         $this->assign([
