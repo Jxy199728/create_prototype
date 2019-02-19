@@ -13,15 +13,10 @@
     <div class="logo-img">
       <img src="__home__/assets/images/logo2_03.gif" alt="" />
     </div>
-    <form action="" class="am-form" data-am-validator>
+    <form action="" class="am-form" method="post" data-am-validator>
       <div class="am-form-group">
         <label for="doc-vld-name-2"><i class="am-icon-user"></i></label>
-        <input type="text" id="doc-vld-name-2" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
-      </div>
-
-      <div class="am-form-group">
-        <label for="doc-vld-email-2"><i class="am-icon-ship"></i></label>
-        <input type="email" id="doc-vld-email-2" placeholder="输入邮箱" required/>
+        <input type="text" name="user_name" id="doc-vld-name-2" minlength="3" placeholder="输入用户名（至少 3 个字符）" required/>
       </div>
 
       <div class="am-form-group">
@@ -31,12 +26,12 @@
 
       <div class="am-form-group">
         <label for="doc-vld-code-2"><i class="am-icon-key"></i></label>
-        <input type="text" name="code" placeholder="验证码" id="doc-vld-code-2" size="35" class="admin_input_style" />
-        <!--<img src="__module__/Login/verify" onclick="this.src='__module__/Login/verify/'+Math.random();" style="cursor: pointer;width: 150px;" />-->
-        <img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+Math.random()"/>
+        <input type="text" name="code" placeholder="验证码" id="doc-vld-code-2" size="35" class="admin_input_style" style="width: 150px"/>
+        <img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+Math.random()" style="cursor: pointer;width: 125px;"/>
       </div>
 
-      <button type="submit" class="am-btn am-btn-secondary"  type="submit">登录</button>
+
+      <input type="submit" value="登录"class="am-btn am-btn-secondary"/>
     </form>
   </div>
 </body>
