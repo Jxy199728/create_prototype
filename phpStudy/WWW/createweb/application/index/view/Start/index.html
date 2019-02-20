@@ -1,0 +1,151 @@
+<div class="form-group">
+    <label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 上传视频 </label>
+    <div class="col-sm-6">
+        <div id="uploader" class="wu-example">
+            <!--用来存放文件信息-->
+            <div class="filename"></div>
+            <div class="state"></div>
+            <div class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+                     aria-valuemax="100" style="width: 0%">
+                    <span class="sr-only">40% Complete (success)</span>
+                </div>
+            </div>
+            <input type="hidden" name="video">
+            <div class="btns">
+                <div id="picker">选择文件</div>
+                <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                <div id="pause" class="btn btn-danger">暂停上传</div>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="__PUBLIC__/webuploader/webuploader.css">
+<script type="http://fex.baidu.com/webuploader/js/jquery-1.10.2.min.js"></script>
+<script src="__PUBLIC__/webuploader/webuploader.min.js"></script>
+<script>
+    $(function(){
+
+        var fileMd5;
+        //监听分块上传过程中的三个时间点
+        WebUploader.Uploader.register({
+            "before-send-file":"beforeSendFile",
+            "before-send":"beforeSend",
+            "after-send-file":"afterSendFile",
+        },{
+            //时间点1：所有分块进行上传之前调用此函数
+            beforeSendFile:function(file){
+                var deferred = WebUploader.Deferred();
+                //1、计算文件的唯一标记，用于断点续传
+                (new WebUploader.Uploader()).md5File(file,0,10*1024*1024)
+                    .progress(function(percentage){
+                        // $('#item1').find("p.state").text("正在读取文件信息...");
+                    })
+                    .then(function(val){
+                        fileMd5=val;
+                        // $('#item1').find("p.state").text("成功获取文件信息...");
+                        //获取文件信息后进入下一步
+                        deferred.resolve();
+                    });
+                return deferred.promise();
+            },
+            //时间点2：如果有分块上传，则每个分块上传之前调用此函数
+            beforeSend:function(block){
+                var deferred = WebUploader.Deferred();
+                // 同步校验，防止没校验完就上传了
+                $.ajaxSetup({async : false});
+                $.ajax({
+                    type:"POST",
+                    url:"{:url('Ajax/check_breakpoint')}",
+                    data:{
+                        //文件唯一标记
+                        fileMd5:fileMd5,
+                        //当前分块下标
+                        chunk:block.chunk,
+                        //当前分块大小
+                        chunkSize:block.end-block.start,
+                        chunks:block.chunks
+                    },
+                    dataType:"json",
+                    success:function(response){
+                        if(response.ifExist==1){
+                            //分块存在，跳过
+                            deferred.reject();
+                        }else{
+                            //分块不存在或不完整，重新发送该分块内容
+                            deferred.resolve();
+                        }
+                    }
+                });
+                $.ajaxSetup({async : true});
+                this.owner.options.formData.fileMd5 = fileMd5;
+                deferred.resolve();
+                return deferred.promise();
+            },
+            //时间点3：所有分块上传成功后调用此函数
+            afterSendFile:function(file){
+                //如果分块上传成功，则通知后台合并分块
+                $.post("{:url('Ajax/vupload_merge')}", { fileMd5: fileMd5, fileName: file.name }, function (data) {
+                    if (data==0) {
+                        $("#uploader .state").html("上传完成");
+                    }
+                });
+            }
+        });
+
+
+        var _extensions = '3gp,mp4,rmvb,mov,avi,m4v';
+        var _mimeTypes = 'video/*,audio/*,application/*';
+        var GUID = WebUploader.Base.guid();//一个GUID
+        var uploader = WebUploader.create({
+            swf: '__PUBLIC/webUploader/Uploader.swf',
+            server: "{:url('Ajax/vupload')}",
+            pick: '#picker',
+            resize: false,
+            chunked: true,//开始分片上传
+            chunkSize: 5*1024*1024,//每一片的大小
+            accept: {
+                title: '视频上传',
+                extensions: _extensions,
+                mimeTypes: _mimeTypes
+            },
+            fileNumLimit: 1,//文件上传数量限制
+            threads: 1,
+            formData: {
+                guid: GUID //自定义参数，待会儿解释
+            }
+        });
+
+        uploader.on('uploadProgress', function (file, percentage) {
+            $("#uploader .progress-bar").width(percentage * 100 + '%');
+            $("#uploader .progress-bar").text(parseInt(percentage * 100) +"%");
+        });
+        uploader.on('uploadSuccess', function () {
+            $("#uploader .progress-bar").removeClass('progress-bar-striped').removeClass('acti').removeClass('progress-bar-info').addClass('progress-bar-success');
+            $("#uploader .state").html("上传成功...");
+
+        });
+        uploader.on('uploadError', function () {
+            $("#uploader .progress-bar").removeClass('progress-bar-striped').removeClass('acti').removeClass('progress-bar-info').addClass('progress-bar-danger');
+            $("#uploader .state").html("上传失败...");
+        });
+
+        $("#ctlBtn").click(function () {
+            uploader.upload();
+            $("#ctlBtn").text("上传");
+            $('#ctlBtn').attr('disabled', 'disabled');
+            $("#uploader .progress-bar").addClass('progress-bar-striped').addClass('active');
+            $("#uploader .state").html("上传中...");
+        });
+        $('#pause').click(function () {
+            uploader.stop(true);
+            $('#ctlBtn').removeAttr('disabled');
+            $("#ctlBtn").text("继续上传");
+            $("#uploader .state").html("暂停中...");
+            $("#uploader .progress-bar").removeClass('progress-bar-striped').removeClass('acti');
+        });
+
+
+
+    })
+</script>
