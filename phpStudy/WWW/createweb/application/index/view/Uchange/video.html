@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)https://www.aconvert.com/cn/video/ -->
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>在线转换视频文件</title>
+    <meta name="description" content="在线转换视频文件 - 将视频文件从一种格式转换为另一种格式，比如AVI到MP4，AVI到MKV，MOV到MP4，MP4到MKV，WMV到MP4，MP4到OGV等。">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="__home__/assets/css/layout.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__home__/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="__home__/assets/css/css">
+</head>
+<body>
+{include file="Ucommon/header"}
+{include file="Ucommon/left"}
+<div class="content">
+    <div class="function-menu">
+        <ul class="menu">
+            <li><a href="{:url('video')}"><i class="fa fa-check-square-o"></i> 转换</a></li>
+            <li><a href="{:url('split')}"><i class="fa fa-square-o"></i> 分割</a></li>
+            <li><a href="{:url('crop')}"><i class="fa fa-square-o"></i> 裁剪</a></li>
+        </ul>
+    </div>
+    <div id="pad-wrapper" class="form-page">
+        <div class="row header">
+            <div class="col-md-12">
+                <h3>在线转换视频文件</h3>
+            </div>
+        </div>
+        <div class="row form-wrapper">
+            <div class="col-md-9 with-sidebar">
+                <div class="container" id="container">
+                    <form class="form-horizontal" action="https://www.aconvert.com/cn/video/#" method="post" enctype="multipart/form-data" name="conversionform" id="conversionform">
+                        <div class="field-box">
+                            <label><div class="btn-group toggle-inputs">
+                                <button class="glow left active" data-input="local">文件</button>
+                                <button class="glow right" data-input="online">链接</button>
+                            </div>：</label>
+                            <div class="col-md-9"><input id="file" name="file" type="file"></div>
+                        </div>
+                        <div class="field-box">
+                            <label>目标格式：</label>
+                            <div class="ui-select">
+                                <select name="targetformat" id="targetformat">
+                                    <option value="mp4" selected="">MP4
+                                    </option><option value="avi">AVI
+                                </option><option value="mpg">MPG
+                                </option><option value="mkv">MKV
+                                </option><option value="wmv">WMV
+                                </option><option value="m2ts">M2TS
+                                </option><option value="webm">WEBM
+                                </option><option value="flv">FLV
+                                </option><option value="asf">ASF
+                                </option><option value="mov">MOV
+                                </option><option value="m4v">M4V
+                                </option><option value="rm">RM
+                                </option><option value="vob">VOB
+                                </option><option value="ogv">OGV
+                                </option><option value="swf">SWF
+                                </option><option value="gif">GIF
+                                </option></select>
+                            </div>
+                        </div>
+                        <div class="field-box">
+                            <label>选项：</label>
+                            <div class="ui-select">
+                                <select name="videooptiontype" id="videooptiontype" onchange="changeselection2(this.options[this.options.selectedIndex].value)">
+                                    <option value="0" selected="">保留原视频参数</option>
+                                    <option value="1">更改大小，比特率或帧速率</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="videooptions" name="videooptions" style="display: none;">
+                            <div class="field-box">
+                                <label>视频大小：</label>
+                                <div class="ui-select">
+                                    <select name="videosizetype" id="videosizetype" onchange="changeselection3(this.options[this.options.selectedIndex].value)">
+                                        <option value="0" selected="">保持原样</option>
+                                        <option value="160x112">160x112</option>
+                                        <option value="176x144">176x144</option>
+                                        <option value="220x176">220x176</option>
+                                        <option value="320x240">320x240</option>
+                                        <option value="352x240">352x240</option>
+                                        <option value="352x288">352x288</option>
+                                        <option value="368x208">368x208</option>
+                                        <option value="480x272">480x272</option>
+                                        <option value="480x320">480x320</option>
+                                        <option value="480x480">480x480</option>
+                                        <option value="480x576">480x576</option>
+                                        <option value="512x384">512x384</option>
+                                        <option value="640x480">640x480 (480p)</option>
+                                        <option value="720x480">720x480</option>
+                                        <option value="720x576">720x576</option>
+                                        <option value="1080x720">1080x720 (720p)</option>
+                                        <option value="1440x1080">1440x1080</option>
+                                        <option value="1920x1080">1920x1080 (1080p)</option>
+                                        <option value="1920x1200">1920x1200</option>
+                                        <option value="2048x1536">2048x1536</option>
+                                        <option value="2560x1440">2560x1440</option>
+                                        <option value="2560x1600">2560x1600</option>
+                                        <option value="3840x2160">3840x2160</option>
+                                        <option value="1">定制大小</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="videosizeoptions" name="videosizeoptions" style="display: none;">
+                                <div class="field-box">
+                                    <label>定制：</label><div class="col-md-9">
+                                    <input class="smallinput" name="customvideowidth" type="text" placeholder="宽"> x <input class="smallinput" name="customvideoheight" type="text" placeholder="高"></div>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>比特率：</label>
+                                <div class="ui-select">
+                                    <select name="videobitratetype" id="videobitratetype" onchange="changeselection4(this.options[this.options.selectedIndex].value)">
+                                        <option value="0" selected="">保持原样</option>
+                                        <option value="64k">64k</option>
+                                        <option value="96k">96k</option>
+                                        <option value="112k">112k</option>
+                                        <option value="128k">128k</option>
+                                        <option value="160k">160k</option>
+                                        <option value="192k">192k</option>
+                                        <option value="256k">256k</option>
+                                        <option value="384k">384k</option>
+                                        <option value="512k">512k</option>
+                                        <option value="768k">768k</option>
+                                        <option value="1024k">1024k</option>
+                                        <option value="2000k">2000k</option>
+                                        <option value="4000k">4000k</option>
+                                        <option value="5000k">5000k</option>
+                                        <option value="6000k">6000k</option>
+                                        <option value="8000k">8000k</option>
+                                        <option value="10000k">10000k</option>
+                                        <option value="12000k">12000k</option>
+                                        <option value="1">定制比特率</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="videobitrateoptions" name="videobitrateoptions" style="display: none;">
+                                <div class="field-box">
+                                    <label>定制：</label><div class="col-md-5">
+                                    <input name="custombitrate" id="custombitrate" class="form-control" type="text" value=""></div>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>帧速率：</label>
+                                <div class="ui-select">
+                                    <select name="frameratetype" id="frameratetype" onchange="changeselection5(this.options[this.options.selectedIndex].value)">
+                                        <option value="0" selected="">保持原样</option>
+                                        <option value="8">8</option>
+                                        <option value="10">10</option>
+                                        <option value="12">12</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                        <option value="23.976">23.976</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="29.97">29.97</option>
+                                        <option value="30">30</option>
+                                        <option value="50">50</option>
+                                        <option value="60">60</option>
+                                        <option value="1">定制帧速率</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="videoframerateoptions" name="videoframerateoptions" style="display: none;">
+                                <div class="field-box">
+                                    <label>定制：</label><div class="col-md-5">
+                                    <input name="customframerate" id="customframerate" class="form-control" type="text" value=""></div>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>比例：</label>
+                                <div class="ui-select">
+                                    <select name="videoaspect" id="videoaspect">
+                                        <option value="0" selected="">保持原样</option>
+                                        <option value="4：3">4：3</option>
+                                        <option value="16：9">16：9</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-11 field-box actions">
+                            <input name="code" type="hidden" id="code" value="81000">
+                            <input id="submitbtn" class="btn-glow primary" type="button" value="开始转换" onclick="convertpdfform()">
+                            <input name="filelocation" id="filelocation" type="hidden" value="local">
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <div class="field-box">
+                        <h5>转换结果：</h5>
+                    </div>
+                    <div class="field-box">
+                        <table class="table table-hover" id="resulttab">
+                            <thead>
+                            <tr>
+                                <th class="col-md-1">
+                                    #
+                                </th>
+                                <th class="col-md-5">
+                                    <span class="line"></span>输出文件
+                                </th>
+                                <th class="col-md-4">
+                                    <span class="line"></span>源文件
+                                </th>
+                                <th class="col-md-2">
+                                    <span class="line"></span>操作
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody id="resultbody">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="field-box">
+                        <p>
+                            <script async="" src="__home__/assets/txt/f(2).txt"></script>
+                            <!-- aconvert-link -->
+
+                        </p>
+                        <h6>步骤：</h6>
+                        <p>1. 点击“文件”或“链接”按钮切换本地文件或在线文件。点击“选择文件”按钮选择本地文件或输入在线文件URL。源文件也可以是音频格式。视频和音频文件大小限制为200M。</p>
+                        <p>2. 选择一个目标视频格式。目标视频格式可以是<a href="https://www.aconvert.com/cn/format/mp4/">MP4</a>，<a href="https://www.aconvert.com/cn/format/avi/">AVI</a>，<a href="https://www.aconvert.com/cn/format/flv/">FLV</a>，<a href="https://www.aconvert.com/cn/format/mpeg/">MPG</a>，<a href="https://www.aconvert.com/cn/format/mkv/">MKV</a>，<a href="https://www.aconvert.com/cn/format/wmv/">WMV</a>，<a href="https://www.aconvert.com/cn/format/m2ts/">M2TS</a>，<a href="https://www.aconvert.com/cn/format/webm/">WEBM</a>，<a href="https://www.aconvert.com/cn/format/asf/">ASF</a>，<a href="https://www.aconvert.com/cn/format/mov/">MOV</a>，<a href="https://www.aconvert.com/cn/format/m4v/">M4V</a>，<a href="https://www.aconvert.com/cn/format/rm/">RM</a>，<a href="https://www.aconvert.com/cn/format/vob/">VOB</a>，<a href="https://www.aconvert.com/cn/format/ogv/">OGV</a>或<a href="https://www.aconvert.com/cn/format/gif/">GIF</a>。</p>
+                        <p>3. 点击“开始转换”按钮开始转换。如果转换失败该转换器会自动换其它服务器重试提交，请耐心等待。输出文件将会列在“转换结果”下面。点击 <i class="fa fa-download"></i> 图标显示文件二维码或将文件保存到Google Drive或Dropbox。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="__home__/assets/js/jquery.min.js"></script>
+    <script src="__home__/assets/js/forms.min.js"></script>
+    <script type="text/javascript">
+        function changeselection2(s) {
+            if (s=="0"){
+                $("#videooptions").hide();
+            } else {
+                $("#videooptions").show();
+            }
+        }
+        function changeselection3(s) {
+            if (s=="1"){
+                $("#videosizeoptions").show();
+            } else {
+                $("#videosizeoptions").hide();
+            }
+        }
+        function changeselection4(s) {
+            if (s=="1"){
+                $("#videobitrateoptions").show();
+            } else {
+                $("#videobitrateoptions").hide();
+            }
+        }
+        function changeselection5(s) {
+            if (s=="1"){
+                $("#videoframerateoptions").show();
+            } else {
+                $("#videoframerateoptions").hide();
+            }
+        }
+        changeselection2("0");
+        changeselection3("0");
+        changeselection4("0");
+        changeselection5("0");
+    </script>
+    <script type="text/javascript">
+        var num = 0;
+        var retry = 0;
+        var targetURL = "//s17.aconvert.com/convert/convert-batch.php";
+        $(document).ready(function() {
+
+        });
+        function showResponse(responseText, statusText, xhr, $form)  {
+            $('#container').waiting('done');
+            var str = '';
+            var istr = '';
+            var data = jQuery.parseJSON(responseText);
+            var subser = 's' + data.server;
+            if (data.state == 'SUCCESS'){
+                retry = 0;
+                num = num+1;
+                str = '<tr id=tr'+num+'><td>'+num+'</td><td><a href="//'+subser+'.aconvert.com/convert/p3r68-cdx67/'+data.filename+'" target="_black">'+data.filename+'</a></td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="/cn/file.php?l='+subser+'.aconvert.com/convert/p3r68-cdx67/'+data.filename+'" target="_black" title="Save"><span><i class="fa fa-download action-icon"></i></span></a> <a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                $("#resultbody").append(str);
+            } else {
+                if (retry == 0){
+                    retry = 1;
+                    document.getElementById("submitbtn").click();
+                } else {
+                    retry = 0;
+                    num = num+1;
+                    str = '<tr id=tr'+num+'><td>'+num+'</td><td><a href="/cn/error.php?s='+data.result+'">Conversion Failed</a></td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                    $("#resultbody").append(str);
+                }
+            }
+        }
+        function showError(responseText, statusText, xhr, $form)  {
+            $('#container').waiting('done');
+            if (retry == 0){
+                retry = 1;
+                document.getElementById("submitbtn").click();
+            } else {
+                retry = 0;
+                num = num+1;
+                str = '<tr id=tr'+num+'><td>'+num+'</td><td><a href="/cn/error.php?s=0">Conversion Failed</a></td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                $("#resultbody").append(str);
+            }
+        }
+        function showUploadProgress(event, position, total, percentComplete)  {
+            var percentVal = percentComplete + '%';
+            if (percentVal == '100%') {
+                percentVal = 'Converting';
+            }
+            $('.waiting-percent').html(percentVal);
+        }
+        function convertpdfform() {
+            if (document.getElementById("filelocation").value == "online"){
+                if (document.forms["conversionform"].file.value.length < 15){
+                    num = num+1;
+                    str = '<tr id=tr'+num+'><td>'+num+'</td><td>Error: Invalid URL</td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                    $("#resultbody").append(str);
+                    return false;
+                }
+            } else {
+                if (!$("#file").val()){
+                    num = num+1;
+                    str = '<tr id=tr'+num+'><td>'+num+'</td><td>Error: File not chosen</td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                    $("#resultbody").append(str);
+                    return false;
+                }
+                var size = $("#file")[0].files[0].size;
+                if (size > 209715200){
+                    num = num+1;
+                    str = '<tr id=tr'+num+'><td>'+num+'</td><td>Error: File size is larger than 200m</td><td>'+document.forms["conversionform"].file.value+'</td><td><a href="#" onclick="deltr('+num+')" title="Delete"><span><i class="fa fa-close action-icon"></i></span></a></td></tr>';
+                    $("#resultbody").append(str);
+                    return false;
+                }
+            }
+            var randomnum = Math.random();
+            if (retry == '0'){
+                if (randomnum>0.75) {
+                    targetURL = "//s17.aconvert.com/convert/convert-batch.php";
+                } else if (randomnum>0.5) {
+                    targetURL = "//s19.aconvert.com/convert/convert-batch.php";
+                } else if (randomnum>0.25) {
+                    targetURL = "//s27.aconvert.com/convert/convert-batch.php";
+                } else {
+                    targetURL = "//s31.aconvert.com/convert/convert-batch.php";
+                }
+            } else {
+                targetURL = "//s23.aconvert.com/convert/convert-batch.php";
+            }
+            var options = {
+                success:       showResponse,
+                error:         showError,
+                uploadProgress: showUploadProgress,
+                url:       targetURL,
+            };
+            $('#conversionform').ajaxForm(options);
+            $('#conversionform').ajaxSubmit(options);
+            $('#container').waiting();
+            if (retry == '1'){
+                $('.waiting-percent').html('retry');
+            } else {
+                $('.waiting-percent').html('0%');
+            }
+            return false;
+        }
+        function deltr(trid) {
+            $("#tr"+trid).remove();
+        }
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var $buttons = $(".toggle-inputs button");
+            $buttons.click(function () {
+                var mode = $(this).data("input");
+                $buttons.removeClass("active");
+                $(this).addClass("active");
+                if (mode === "local") {
+                    document.getElementById("file").outerHTML = "<input id=\"file\" name=\"file\" type=\"file\" />";
+                    document.getElementById("filelocation").value = "local";
+                } else {
+                    document.getElementById("file").outerHTML="<input id=\"file\" name=\"file\" class=\"form-control\" type=\"text\" value=\""+"https://"+"\" />";
+                    document.getElementById("filelocation").value = "online";
+                }
+                return false;
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>

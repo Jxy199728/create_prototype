@@ -1,27 +1,22 @@
 <div id="sidebar-nav">
     <ul id="dashboard-menu">
-        <li>
-            <a href="#">
+{volist name="ucateRes" id="vo" key="k"}
+
+        <li {if condition="$ucateids['cate_id'] eq $vo['cate_id']"}class="active"{/if}>
+            {if condition="$k%3 eq 0"}
+            <a href="{:url('Uanalyst/video')}">
                 <i class="fa fa-file-image-o"></i>
-                <span>视频管理</span>
-            </a>
+                {elseif condition="$k%3 eq 1"}
+                <a href="{:url('Umanage/video')}">
+                    <i class="fa fa-file-video-o"></i>
+                    {elseif condition="$k%3 eq 2"}
+                    <a href="{:url('Uchange/video')}">
+                        <i class="fa fa-file-audio-o"></i>
+                        {/if}
+                        <span>{$vo.cate_name}</span>
+                    </a>
         </li>
-        <li class="active">
-            <div class="pointer">
-                <div class="arrow"></div>
-                <div class="arrow_border"></div>
-            </div>
-            <a href="https://www.aconvert.com/cn/video/">
-                <i class="fa fa-file-video-o"></i>
-                <span>视频预处理</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <i class="fa fa-file-audio-o"></i>
-                <span>视频分析</span>
-            </a>
-        </li>
+{/volist}
 
     </ul>
 </div>
