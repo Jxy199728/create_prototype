@@ -3,7 +3,7 @@
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>视频管理</title>
-    <meta name="description" content="在线裁剪视频 - 裁剪MP4，AVI，FLV，MPG，MKV，WMV，WEBM，MOV，M4V，RM，VOB或OGV视频。">
+    <meta name="description" content="在线管理视频 - 增加、删除、分类视频。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -25,9 +25,9 @@
 <div class="content">
     <div class="function-menu">
         <ul class="menu">
-            <li><a href="{:url('video')}"><i class="fa fa-square-o"></i> 上传视频</a></li>
-            <li><a href="{:url('split')}"><i class="fa fa-square-o"></i> 分割</a></li>
-            <li><a href="{:url('crop')}"><i class="fa fa-check-square-o"></i> 裁剪</a></li>
+            <li><a href="{:url('upload')}"><i class="fa fa-square-o"></i> 上传视频</a></li>
+            <li><a href="{:url('video')}"><i class="fa fa-check-square-o"></i> 管理视频</a></li>
+            <li><a href="{:url('classify')}"><i class="fa fa-square-o"></i> 分类</a></li>
         </ul>
     </div>
     <div id="pad-wrapper" class="form-page">
@@ -62,8 +62,8 @@
                 <ul class="fav-video-list clearfix content">
                     <!--视频-->
                     <li data-aid="3555301" class="small-item">
-                        <a data-v-2894f8b2="" href="//www.bilibili.com/video/av3555301" target="_blank" class="cover cover-normal">
-                            <img data-v-2894f8b2="" src="//i0.hdslb.com/bfs/archive/7050ce04adc616fb0dea55b65da9db0018f01e03.jpg@380w_240h_100Q_1c.webp" alt="【Pewdiepie】你所看过最诡异的电影....【中文字幕】">
+                        <a data-v-2894f8b2="" href="#" target="_blank" class="cover cover-normal">
+                            <img data-v-2894f8b2="" src="#" alt="【Pewdiepie】你所看过最诡异的电影....【中文字幕】">
                             <span data-v-2894f8b2="" class="length">10:10</span>
                             <span data-v-2894f8b2="" class="i-watchlater"></span>
                             <div data-v-2894f8b2="" class="meta-mask" style="">
@@ -74,19 +74,61 @@
                             <p data-v-2894f8b2="">视频已失效</p>
                         </div>
                             <div data-v-2894f8b2="" class="be-tags-container"><!----><!----><!----></div>
-                        </a><a target="_blank" href="//www.bilibili.com/video/av3555301" title="【Pewdiepie】你所看过最诡异的电影....【中文字幕】" class="title">【Pewdiepie】你所看过最诡异的电影....【中文字幕】</a>
+                        </a><a target="_blank" href="#" title="【Pewdiepie】你所看过最诡异的电影....【中文字幕】" class="title">
+                        【Pewdiepie】你所看过最诡异的电影....【中文字幕】</a>
                         <div class="meta pubdate">收藏于2-9</div>
-                     <!----><!----><div class="be-dropdown video-edit"><div class="be-dropdown-trigger"><i title="更多操作" class="iconfont icon-ic_more"></i></div><ul class="be-dropdown-menu menu-align-" style="left: 358.667px; top: 328px; transform-origin: center top 0px; display: none;"><li class="be-dropdown-item be-dropdown-item-delimiter">
-            取消收藏</li><li class="be-dropdown-item">
-            移动到</li><li class="be-dropdown-item">
-            复制到</li></ul></div><div class="video-check-container" style="display: none;"><div class="video-check icon"></div></div></li>
 
-                    <li data-aid="3113044" class="small-item"><a data-v-2894f8b2="" href="//www.bilibili.com/video/av3113044" target="_blank" class="cover cover-normal"><img data-v-2894f8b2="" src="//i1.hdslb.com/bfs/archive/7ff30951f961af5210a747a4059bf9e9b0e030c0.jpg@380w_240h_100Q_1c.webp" alt=" 20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX"><span data-v-2894f8b2="" class="length">03:50</span><span data-v-2894f8b2="" class="i-watchlater"></span><div data-v-2894f8b2="" class="meta-mask" style=""><div data-v-2894f8b2="" class="meta-info"><p data-v-2894f8b2="" class="view">播放：3045</p><p data-v-2894f8b2="" class="favorite">收藏：176</p><p data-v-2894f8b2="" class="author">UP主：Kizunano</p><p data-v-2894f8b2="" class="pubdate">投稿：2015-10-25</p></div></div><div data-v-2894f8b2="" class="disabled-cover"><div data-v-2894f8b2="" class="candle"></div><p data-v-2894f8b2="">视频已失效</p></div><div data-v-2894f8b2="" class="be-tags-container"><!----><!----><!----></div></a><a target="_blank" href="//www.bilibili.com/video/av3113044" title=" 20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX" class="title"> 20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX</a><div class="meta pubdate">
+                     <div class="be-dropdown video-edit">
+                         <div class="be-dropdown-trigger">
+                             <i title="更多操作" class="iconfont icon-ic_more"></i>
+                         </div>
+                        <ul class="be-dropdown-menu menu-align-" style="left: 358.667px; top: 328px; transform-origin: center top 0px; display: none;">
+                            <li class="be-dropdown-item be-dropdown-item-delimiter">取消收藏</li>
+                            <li class="be-dropdown-item">移动到</li>
+                            <li class="be-dropdown-item">复制到</li>
+                        </ul>
+                     </div>
+                        <div class="video-check-container" style="display: none;">
+                            <div class="video-check icon"></div>
+                        </div>
+                    </li>
+
+                    <li data-aid="3113044" class="small-item">
+                        <a data-v-2894f8b2="" href="#" target="_blank" class="cover cover-normal">
+                            <img data-v-2894f8b2="" src="#" alt=" 20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX">
+                            <span data-v-2894f8b2="" class="length">03:50</span>
+                            <span data-v-2894f8b2="" class="i-watchlater"></span>
+                            <div data-v-2894f8b2="" class="meta-mask" style="">
+                                <div data-v-2894f8b2="" class="meta-info">
+                                    <p data-v-2894f8b2="" class="pubdate">投稿：2015-10-25</p>
+                                </div>
+                            </div>
+                            <div data-v-2894f8b2="" class="disabled-cover">
+                                <div data-v-2894f8b2="" class="candle"></div>
+                                <p data-v-2894f8b2="">视频已失效</p>
+                            </div>
+                            <div data-v-2894f8b2="" class="be-tags-container"><!----><!----><!----></div>
+                        </a><a target="_blank" href="#" title=" 20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX" class="title">
+                        20131025 TEAM B - CLIMAX / 20151003 iKON - CLIMAX</a>
+                        <div class="meta pubdate">
             收藏于2018-3-8
-        </div><!----><!----><div class="be-dropdown video-edit"><div class="be-dropdown-trigger"><i title="更多操作" class="iconfont icon-ic_more"></i></div><ul class="be-dropdown-menu menu-align-" style="left: 0px; top: 0px; transform-origin: center top 0px; display: none;"><li class="be-dropdown-item be-dropdown-item-delimiter">
-            取消收藏</li><li class="be-dropdown-item">
-            移动到</li><li class="be-dropdown-item">
-            复制到</li></ul></div><div class="video-check-container" style="display: none;"><div class="video-check icon"></div></div></li></ul><ul class="be-pager" style=""><li title="上一页" class="be-pager-prev be-pager-disabled"><a>上一页</a></li><li title="第一页" class="be-pager-item be-pager-item-active"><a>1</a></li><!----><!----><!----><!----><li title="2" class="be-pager-item"><a>2</a></li><!----><!----><li title="最后一页:3" class="be-pager-item"><a>3</a></li><li title="下一页" class="be-pager-next"><a>下一页</a></li><span class="be-pager-total">共 3 页，</span><span class="be-pager-options-elevator">
+        </div>
+
+                        <div class="be-dropdown video-edit">
+                            <div class="be-dropdown-trigger">
+                                <i title="更多操作" class="iconfont icon-ic_more"></i>
+                            </div>
+                            <ul class="be-dropdown-menu menu-align-" style="left: 0px; top: 0px; transform-origin: center top 0px; display: none;">
+                                <li class="be-dropdown-item be-dropdown-item-delimiter">取消收藏</li>
+                                <li class="be-dropdown-item">移动到</li>
+                                <li class="be-dropdown-item">复制到</li></ul>
+                        </div>
+                        <div class="video-check-container" style="display: none;">
+                            <div class="video-check icon"></div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="be-pager" style=""><li title="上一页" class="be-pager-prev be-pager-disabled"><a>上一页</a></li><li title="第一页" class="be-pager-item be-pager-item-active"><a>1</a></li><!----><!----><!----><!----><li title="2" class="be-pager-item"><a>2</a></li><!----><!----><li title="最后一页:3" class="be-pager-item"><a>3</a></li><li title="下一页" class="be-pager-next"><a>下一页</a></li><span class="be-pager-total">共 3 页，</span><span class="be-pager-options-elevator">
     跳至
     <input type="text"> 页
   </span></ul></div></div>

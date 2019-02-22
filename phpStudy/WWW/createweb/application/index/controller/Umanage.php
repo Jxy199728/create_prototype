@@ -11,4 +11,20 @@ class Umanage extends Ucommon{
         ]);
         return view();
     }
+    public function upload(){
+        $ucateid=1;
+        $ucateids=db('ucate')->find($ucateid);
+        $this->assign([
+            'ucateids'=>$ucateids,
+        ]);
+        return view();
+    }
+    public function classify(){
+        $ucateid=1;
+        $ucateids=db('ucate')->find($ucateid);
+        $this->assign([
+            'ucateids'=>$ucateids,
+        ]);
+        return view();
+    }
 }
