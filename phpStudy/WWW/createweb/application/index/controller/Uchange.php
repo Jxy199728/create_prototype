@@ -15,9 +15,19 @@ class Uchange extends Ucommon
         return view();
     }
     public function split(){
+        $ucateid=2;
+        $ucateids=db('ucate')->find($ucateid);
+        $this->assign([
+            'ucateids'=>$ucateids,
+        ]);
         return view();
     }
     public function crop(){
+        $ucateid=2;
+        $ucateids=db('ucate')->find($ucateid);
+        $this->assign([
+            'ucateids'=>$ucateids,
+        ]);
         return view();
     }
 	//检测是否有断点
