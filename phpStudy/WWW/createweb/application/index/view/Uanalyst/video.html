@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="__home__/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="__home__/assets/css/admin.css">
+
     <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="__home__/assets/css/layout.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="__home__/assets/css/font-awesome.min.css">
@@ -212,38 +213,9 @@
     <script type="text/javascript">
         var num = 0;
 
-        let items=document.querySelectorAll('.am-panel-hd am-cf'),itemWraps=document.querySelectorAll('.am-panel-bd am-collapse am-in');
         $(document).ready(function() {
-
         });
-        items.forEach((ele,index)=>{
-            ele.dispBol='false';　　　　//创建一个属性来记录当前面板是否展开   true 展开 false折叠
-            items[index].onclick=((e)=>{
-                let thisDispBol=e.toElement.dispBol; //先保存thisDisBol。接下来要重置
-                itemsInit();
-                thisDispBol=='false' ? e.toElement.dispBol='true' : e.toElement.dispBol='false';
-                repaint();
-            });
-        })
-        function repaint(){
-            items.forEach((ele,index)=>{
-                ele.dispBol=='true' ? itemWraps[index].style.display='block' : itemWraps[index].style.display='none';
-            })
-        }
-        function itemsInit(){
-            items.forEach((ele,index)=>{
-                ele.dispBol='false';
-            })
-        }
-        $(function(){
-            $(".am-panel-hd am-cf").toggle(function(){
-                $(this).next("div.am-panel-bd am-collapse am-in #collapse-panel-1").hide();
-            },function(){
-                $(this).next("div.am-panel-bd am-collapse am-in #collapse-panel-1").show();
-            })
-        })
-        $('#myCollapse').collapse({
-        })
+
         function showResponse(responseText, statusText, xhr, $form)  {
             $('#container').waiting('done');
             var str = '';
@@ -362,6 +334,9 @@
         });
     </script>
 </div>
+
+<script src="__admin__/assets/js/amazeui.min.js"></script>
+<script src="__admin__/assets/js/app.js"></script>
 </body>
 
 </html>
