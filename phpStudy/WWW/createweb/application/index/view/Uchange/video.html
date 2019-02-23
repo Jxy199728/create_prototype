@@ -9,7 +9,7 @@
     <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="__home__/assets/css/layout.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="__home__/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="__home__/assets/css/css">
+    <!--<link rel="stylesheet" type="text/css" href="__home__/assets/css/css">-->
 </head>
 <body>
 {include file="Ucommon/header"}
@@ -31,7 +31,7 @@
         <div class="row form-wrapper">
             <div class="col-md-9 with-sidebar">
                 <div class="container" id="container">
-                    <form class="form-horizontal" action="https://www.aconvert.com/cn/video/#" method="post" enctype="multipart/form-data" name="conversionform" id="conversionform">
+                    <form class="form-horizontal" action="video.html" method="post" enctype="multipart/form-data" name="conversionform" id="conversionform">
                         <div class="field-box">
                             <label><div class="btn-group toggle-inputs">
                                 <button class="glow left active" data-input="local">文件</button>
@@ -183,7 +183,7 @@
                         </div>
                         <div class="col-md-11 field-box actions">
                             <input name="code" type="hidden" id="code" value="81000">
-                            <input id="submitbtn" class="btn-glow primary" type="button" value="开始转换" onclick="convertpdfform()">
+                            <input id="submitbtn" name="submitbtn" class="btn-glow primary" type="button" value="开始转换" onclick="convertpdfform()">
                             <input name="filelocation" id="filelocation" type="hidden" value="local">
                         </div>
                     </form>
@@ -233,6 +233,7 @@
     </div>
     <script src="__home__/assets/js/jquery.min.js"></script>
     <script src="__home__/assets/js/forms.min.js"></script>
+    <script src="__home__/assets/js/jquery.form.js"></script>
     <script type="text/javascript">
         function changeselection2(s) {
             if (s=="0"){
@@ -270,7 +271,6 @@
     <script type="text/javascript">
         var num = 0;
         var retry = 0;
-        var targetURL = "//s17.aconvert.com/convert/convert-batch.php";
         $(document).ready(function() {
 
         });
@@ -340,24 +340,11 @@
                 }
             }
             var randomnum = Math.random();
-            if (retry == '0'){
-                if (randomnum>0.75) {
-                    targetURL = "//s17.aconvert.com/convert/convert-batch.php";
-                } else if (randomnum>0.5) {
-                    targetURL = "//s19.aconvert.com/convert/convert-batch.php";
-                } else if (randomnum>0.25) {
-                    targetURL = "//s27.aconvert.com/convert/convert-batch.php";
-                } else {
-                    targetURL = "//s31.aconvert.com/convert/convert-batch.php";
-                }
-            } else {
-                targetURL = "//s23.aconvert.com/convert/convert-batch.php";
-            }
+
             var options = {
                 success:       showResponse,
                 error:         showError,
                 uploadProgress: showUploadProgress,
-                url:       targetURL,
             };
             $('#conversionform').ajaxForm(options);
             $('#conversionform').ajaxSubmit(options);

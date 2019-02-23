@@ -12,6 +12,11 @@ class Uchange extends Ucommon
         $this->assign([
             'ucateids'=>$ucateids,
         ]);
+
+        if(isset($_POST['submitbtn'])){
+            $currentPath=$_FILES["video"]["tmp_name"];
+            exec("__ROOT__/ffmpeg.exe");
+            exec("ffmpeg -i ".$currentPath." -an ./output/video223.mp4");}
         return view();
     }
     public function split(){
