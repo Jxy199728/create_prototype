@@ -70,9 +70,11 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <ul class="fav-video-list clearfix content">
                         <!--视频-->
-                        <div id="queue" style="margin: auto"></div>
+                        <div id="queue" style="margin: auto">
+                            <img style="display: none" id="upload_img" src="" width="150" height="150">
+                        </div>
                         <input id="file_upload" name="file_upload" type="file" multiple="true">
-                        <input type="submit" value="Upload Files" style="position: relative     position: relative;
+                        <input type="submit" value="Upload Files" style="position: relative;
     background-color: #505050;
     background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #505050), color-stop(1, #707070) );
     background-position: center top;
@@ -161,11 +163,12 @@
                 'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
             },
             'queueID'          : 'queue',
-            'uploadScript'     : '__uploadify__/uploadifive.php',
-            'onUploadComplete' : function(file, data) { console.log(data); }
+             'uploadScript'     : '__uploadify__/uploadifivex.php',
+            'onUploadComplete' : function(file, data) { console.log(data);}
         });
     });
 </script>
+
 <script type="text/javascript">
     // 实例化
     UE.getEditor('contentz',{initialFrameWidth:500,initialFrameHeight:400,toolbars: [['fullscreen','source','undo','redo',
