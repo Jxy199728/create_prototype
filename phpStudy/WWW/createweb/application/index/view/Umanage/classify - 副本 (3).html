@@ -6,7 +6,6 @@
     <meta name="description" content="上传视频 - 丰富你的实验集。">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script charset="utf-8" src="__home__/assets/js/jquery-2.1.0.js"></script>
     <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="__home__/assets/css/layout.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="__home__/assets/css/font-awesome.min.css">
@@ -19,10 +18,11 @@
     <!--<script charset="utf-8" src="__home__/assets/js/5.space.js"></script>-->
     <link rel="stylesheet" type="text/css" charset="utf-8" href="__home__/assets/css/space.14.css">
     <!--<script charset="utf-8" src="__home__/assets/js/14.space.js"></script>-->
-
     <link rel="stylesheet" href="__home__/assets/css/amazeui.min.css"/>
     <link rel="stylesheet" href="__home__/assets/css/admin.css">
 
+
+    <link rel="stylesheet" type="text/css" href="__uploadify__/uploadifive.css">
     <style type="text/css">
         body {
             font: 13px Arial, Helvetica, Sans-serif;
@@ -144,6 +144,22 @@
 
 </div>
 
+<script type="text/javascript">
+    <?php $timestamp = time();?>
+    $(function() {
+        $('#file_upload').uploadifive({
+            'auto'             : false,
+            'checkScript'      : '__uploadify__/check-exists.php',
+            'formData'         : {
+                'timestamp' : '<?php echo $timestamp;?>',
+                'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+            },
+            'queueID'          : 'queue',
+            'uploadScript'     : '__uploadify__/uploadifive.php',
+            'onUploadComplete' : function(file, data) { console.log(data); }
+        });
+    });
+</script>
 </body>
 
 </html>

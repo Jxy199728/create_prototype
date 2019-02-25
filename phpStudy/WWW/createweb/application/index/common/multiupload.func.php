@@ -1,26 +1,28 @@
 <?php
+
 //构建上传文件信息，3维数组变2维数组
 function getFiles(){
     $i=0;
-    foreach($_FILES as $file){
-        // 说明是单文件
-        if(is_string($file['name'])){
-            $files[$i]=$file;
-            $i++;
-        }elseif(is_array($file['name'])){
-            //说明是多文件
-            foreach($file['name'] as $key=>$val){
-                $files[$i]['name']=$file['name'][$key];
-                $files[$i]['type']=$file['type'][$key];
-                $files[$i]['tmp_name']=$file['tmp_name'][$key];
-                $files[$i]['error']=$file['error'][$key];
-                $files[$i]['size']=$file['size'][$key];
+        foreach($_FILES as $file){
+            // 说明是单文件
+            if(is_string($file['name'])){
+                $files[$i]=$file;
                 $i++;
+            }elseif(is_array($file['name'])){
+                //说明是多文件
+                foreach($file['name'] as $key=>$val){
+                    $files[$i]['name']=$file['name'][$key];
+                    $files[$i]['type']=$file['type'][$key];
+                    $files[$i]['tmp_name']=$file['tmp_name'][$key];
+                    $files[$i]['error']=$file['error'][$key];
+                    $files[$i]['size']=$file['size'][$key];
+                    $i++;
+                }
             }
         }
-    }
-    //print_r($files);
+
     return $files;
+    //print_r($files);
 }
 function uploadmultiFiles($fileInfo,$path='./multiuploads',$flag=true,$maxSize=1048576,$allowExt=array('jpeg','jpg','png','gif')){
     $res = array();
@@ -54,11 +56,15 @@ function uploadmultiFiles($fileInfo,$path='./multiuploads',$flag=true,$maxSize=1
         }
         $uniName=getUniName();
         $destination=$path.'/'.$uniName.'.'.$ext;
+
+        $pinjie='multiuploads/'.$uniName;
         if(!move_uploaded_file($fileInfo['tmp_name'],$destination)){
             $res['mes']=$fileInfo['name'].'上传文件移动失败';
         }
         $res['mes']=$fileInfo['name'].'上传成功';
         $res['dest']=$destination;
+        $res['pinjie']=$pinjie;
+
         return $res;
     }else{
         // 匹配错误号

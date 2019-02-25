@@ -7,3 +7,4 @@ function getExt($filename){
 function getUniName(){
     return md5(uniqid(microtime(true),true));
 }
+

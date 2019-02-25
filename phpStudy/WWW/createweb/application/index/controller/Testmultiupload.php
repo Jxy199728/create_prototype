@@ -35,10 +35,16 @@ class Testmultiupload extends Controller{
                 }
             }
             if (isset($uploadFiles)) {
+                print_r($uploadFiles);
+
+                $uploadFiles = array_filter($uploadFiles);
+                print_r($uploadFiles);
+
                 $uploadFiles = array_values(array_filter($uploadFiles));
                 print_r($uploadFiles);
             }
-            return view();
         }
+        return view();
+
     }
 }

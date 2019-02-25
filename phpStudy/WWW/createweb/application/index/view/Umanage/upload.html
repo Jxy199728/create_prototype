@@ -9,7 +9,7 @@
     <link href="__home__/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="__home__/assets/css/layout.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="__home__/assets/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="__home__/assets/css/css">
+    <!--<link rel="stylesheet" type="text/css" href="__home__/assets/css/css">-->
     <link href="__home__/assets/css/space.2.css" rel="stylesheet">
     <!--<script charset="utf-8" src="__home__/assets/js/space.js"></script>-->
     <!--<script charset="utf-8" src="__home__/assets/js/0.space.js"></script>-->
@@ -67,14 +67,18 @@
             <!--section start-->
             <div class="fav-content sectionx">
                 <!--list start-->
-                <form action="" method="post" enctype="multipart/form-data">
+                <!--iframe可以实现无刷新上传文件-->
+                <iframe  name="post_frame" style="display:none;"> </iframe>
+                <form name="formx" action="" method="post" enctype="multipart/form-data" target="post_frame">
                     <ul class="fav-video-list clearfix content">
                         <!--视频-->
                         <div id="queue" style="margin: auto">
                             <img style="display: none" id="upload_img" src="" width="150" height="150">
                         </div>
                         <input id="file_upload" name="file_upload" type="file" multiple="true">
-                        <input type="submit" value="Upload Files" style="position: relative;
+                        <input id="callbackUrl" name="callbackUrl" value="http://localhost/createweb/public/static/sample/callback.php"  />
+
+                        <input type="submit" id="click" style="position: relative;
     background-color: #505050;
     background-image: -webkit-gradient( linear, left bottom, left top, color-stop(0, #505050), color-stop(1, #707070) );
     background-position: center top;
@@ -98,10 +102,27 @@
     width: 102px;
     height: 29px;
     margin-left: inherit;
-    margin-top: inherit;" onclick="javascript:$('#file_upload').uploadifive('upload')">
+    margin-top: inherit;" onclick="javascript:$('#file_upload').uploadifive('upload');">
                         <!--<a style="position: relative; top: 8px;" href="javascript:$('#file_upload').uploadifive('upload')">Upload Files</a>-->
                     </ul>
-                    <div class="am-g am-margin-top">
+                </form>
+
+
+
+                <form action="" method="post" enctype="multipart/form-data">
+                    <tr>
+
+                        <th style="border-bottom:1px solid #D1E0EB;text-align: right;">URL：</th>
+
+                        <td style="border-bottom:1px solid #D1E0EB">
+
+                            <input type="text" id="cover_img_url" name="cover_img_url" size="120" readonly="readonly" /><span>*
+
+                <span style=" height: 100px;" id="show_img"></span></span>
+
+                        </td>
+
+                    </tr>                <div class="am-g am-margin-top">
                         <div class="am-u-sm-4 am-u-md-2 am-text-right">所属类别</div>
                         <div class="am-u-sm-8 am-u-md-10">
                             <select name="vcate_id" data-am-selected="{btnSize: 'sm'}" >
@@ -153,20 +174,51 @@
 </div>
 
 <script type="text/javascript">
-    <?php $timestamp = time();?>
+    <?php
+        $timestamp = time();?>
+
     $(function() {
         $('#file_upload').uploadifive({
             'auto'             : false,
+            'method': 'post',
+            'dnd': true, //拖放
             'checkScript'      : '__uploadify__/check-exists.php',
             'formData'         : {
-                'timestamp' : '<?php echo $timestamp;?>',
+                'timestamp' : '<?php echo $timestamp=time();?>',
                 'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
             },
             'queueID'          : 'queue',
-             'uploadScript'     : '__uploadify__/uploadifivex.php',
-            'onUploadComplete' : function(file, data) { console.log(data);}
-        });
-    });
+            'uploadScript'     : '__uploadify__/uploadifive.php',
+            'cancelImg': '__uploadify__/uploadifive-cancel.png',
+            'buttonText': "请选择文件",                  //按钮文字
+            'height': 30,                             //按钮高度
+            'width': 120,                              //按钮宽度
+            'fileSizeLimit': "2GB",          //上传文件的大小限制 0则表示无限制
+
+            'onUploadComplete' :
+                function(file, data) { console.log(data);
+                    if (data) {
+                        try {
+                            data = JSON.parse(data);
+                            if (data.result === true) {
+                                name = data.msg;
+                                layer_Msg("上传成功");
+                            } else {
+                                layer_Msg(data.msg);
+                            }
+                        } catch (e) {
+                            alert(data);
+                            $('#cover_img_url').val(data);
+                        }
+                    }
+                },
+            'onQueueComplete': function (uploads) {     //队列中的所有文件完成上传后触发。attempts:在上次上载操作中尝试的文件上载次数    successful:上次上载操作中成功上载文件的数量  errors:在上次上载操作中返回错误的文件上载数  count:从此UploadiFive实例上载的文件总数
+
+            }
+
+
+
+        });})
 </script>
 
 <script type="text/javascript">
